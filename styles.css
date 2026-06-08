@@ -1,0 +1,424 @@
+/* ==================== FUTURISTA - NEGRO + NEÓN ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
+    padding: 1.5rem;
+    color: #e0e0e0;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* ==================== HEADER FUTURISTA ==================== */
+.header {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    /* OPTIMIZADO: Reducido el radio del shadow para evitar lag de renderizado */
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 24px;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    /* OPTIMIZADO: Fuerza el uso de la GPU para animar las capas secundarias */
+    will-change: transform;
+}
+
+/* OPTIMIZADO: La animación Shimmer ahora usa 'transform: translateX' (GPU) en lugar de 'left' (CPU) */
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.08), transparent);
+    transform: translateX(-100%);
+    animation: shimmer 3s infinite linear;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, #00ffff, #ff00ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.header p {
+    opacity: 0.7;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+}
+
+/* ==================== TABS FUTURISTAS ==================== */
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    padding-bottom: 0.5rem;
+}
+
+.tab-btn {
+    /* OPTIMIZADO: Eliminado backdrop-filter en elementos pequeños y repetitivos */
+    background: rgba(15, 15, 25, 0.95);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    border-radius: 30px 30px 0 0;
+    cursor: pointer;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tab-btn:hover {
+    border-color: #00ffff;
+    color: #00ffff;
+    box-shadow: 0 -2px 8px rgba(0, 255, 255, 0.15);
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(ff, 0, ff, 0.1));
+    border-color: #00ffff;
+    color: #00ffff;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.4);
+}
+
+/* ==================== PANELES ==================== */
+.tab-pane {
+    display: none;
+    background: #0f0f1a;
+    border-radius: 24px;
+    padding: 1.2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 255, 255, 0.15);
+}
+
+.tab-pane.active-pane {
+    display: block;
+    animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* OPTIMIZADO: Simplificada la animación de entrada para que no salte el render */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== TARJETAS ==================== */
+.card {
+    /* OPTIMIZADO: ELIMINADO BACKDROP-FILTER. En grids con muchas tarjetas destruía los FPS */
+    background: rgba(20, 20, 35, 0.95);
+    border-radius: 20px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(0, 255, 255, 0.15);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    border-color: rgba(0, 255, 255, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 255, 255, 0.1);
+}
+
+.card h3 {
+    color: #00ffff;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+/* ==================== GRIDS ==================== */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+/* ==================== BOTONES ==================== */
+button, .btn-small {
+    background: linear-gradient(135deg, #00aaff, #0066aa);
+    color: white;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 30px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* OPTIMIZADO: Animación del botón movida a 'transform' en vez de 'left' */
+button::before, .btn-small::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+}
+
+button:hover::before, .btn-small:hover::before {
+    transform: translateX(100%);
+}
+
+button:hover, .btn-small:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(0, 170, 255, 0.4);
+}
+
+button.danger { background: linear-gradient(135deg, #ff0040, #aa0020); }
+button.danger:hover { box-shadow: 0 0 12px rgba(255, 0, 64, 0.4); }
+
+button.warning { background: linear-gradient(135deg, #ffaa00, #cc8800); }
+button.warning:hover { box-shadow: 0 0 12px rgba(255, 170, 0, 0.4); }
+
+button.success { background: linear-gradient(135deg, #00ff88, #00aa55); }
+button.success:hover { box-shadow: 0 0 12px rgba(0, 255, 136, 0.4); }
+
+button.secondary { background: linear-gradient(135deg, #555, #333); }
+
+/* ==================== PROGRESO ==================== */
+.progress-track {
+    background: rgba(30, 30, 50, 0.8);
+    border-radius: 20px;
+    height: 10px;
+    margin: 0.5rem 0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, #00ffff, #ff00ff);
+    width: 0%;
+    height: 10px;
+    border-radius: 20px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+}
+
+/* ==================== CHECKLIST ==================== */
+.checklist { list-style: none; }
+.checklist li {
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed rgba(0, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checklist input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #00ffff;
+    cursor: pointer;
+}
+
+.checklist input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ==================== COMUNICADOS Y REUNIONES ==================== */
+.comunicado {
+    background: linear-gradient(135deg, #1a1a2e, #0f0f1a);
+    border-left: 5px solid #00ffff;
+    padding: 0.8rem;
+    margin: 0.8rem 0;
+    border-radius: 14px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.comunicado:hover {
+    transform: translateX(4px);
+    border-left-color: #ff00ff;
+}
+
+.reunion-card {
+    background: linear-gradient(135deg, #1a1a2e, #0f0f1a);
+    border-left: 5px solid #ffaa00;
+    padding: 0.8rem;
+    margin: 0.8rem 0;
+    border-radius: 14px;
+    transition: transform 0.2s ease;
+}
+
+.reunion-card:hover { transform: translateX(4px); }
+.reunion-pasada { border-left-color: #555; opacity: 0.8; }
+.reunion-proxima { border-left-color: #00ff88; }
+
+/* ==================== COTIZACIONES ==================== */
+.cotizacion-card {
+    background: linear-gradient(135deg, #0f0f1a, #1a1a2e);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cotizacion-card:hover {
+    transform: translateY(-4px);
+    border-color: #00ffff;
+    box-shadow: 0 8px 24px rgba(0, 255, 255, 0.15);
+}
+
+.cotizacion-card h3 {
+    color: #00ffff;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.cotizacion-precio {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #00ffff, #ff00ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* ==================== BADGES ==================== */
+.status-badge {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.status-pendiente {
+    background: rgba(255, 170, 0, 0.15);
+    color: #ffaa00;
+    border: 1px solid rgba(255, 170, 0, 0.25);
+}
+
+.status-aprobado {
+    background: rgba(0, 255, 136, 0.15);
+    color: #00ff88;
+    border: 1px solid rgba(0, 255, 136, 0.25);
+}
+
+/* ==================== FORMULARIOS ==================== */
+input, textarea, select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 255, 255, 0.25);
+    background: rgba(15, 15, 25, 0.95);
+    color: #e0e0e0;
+    font-family: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.25);
+}
+
+input::placeholder, textarea::placeholder { color: #555; }
+.form-group { margin-bottom: 0.8rem; }
+.form-group label {
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-bottom: 0.2rem;
+    display: block;
+}
+
+/* ==================== MODAL ==================== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    /* OPTIMIZADO: Mantener blur solo aquí ya que es un único elemento que congela el fondo */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #0f0f1a, #1a1a2e);
+    border: 1px solid rgba(0, 255, 255, 0.25);
+    border-radius: 24px;
+    padding: 1.5rem;
+    max-width: 450px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.modal-content h3 { color: #00ffff; margin-bottom: 1rem; }
+.private-panel {
+    background: linear-gradient(135deg, #0f0f1a, #1a1a2e);
+    border: 1px solid rgba(255, 0, 255, 0.25);
+}
+
+/* ==================== FOOTER ==================== */
+footer { text-align: center; margin-top: 1.5rem; color: #555; font-size: 0.75rem; }
+
+/* ==================== UTILIDADES ==================== */
+.text-center { text-align: center; }
+.mt-1 { margin-top: 0.5rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+
+/* ==================== SCROLLBAR FUTURISTA ==================== */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #00ffff, #ff00ff);
+    border-radius: 10px;
+}
+
+/* ==================== EFECTOS ESPECIALES ==================== */
+.glow-text { text-shadow: 0 0 8px rgba(0, 255, 255, 0.4); }
+.neon-border {
+    border: 1px solid rgba(0, 255, 255, 0.4);
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.15);
+}
+
+button:active { transform: scale(0.98); }

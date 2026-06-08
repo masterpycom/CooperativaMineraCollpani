@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script>
+        (function() {
+            const CLAVE_CORRECTA = "Collpani2026";
+            if (sessionStorage.getItem("acceso_collpani") !== "true") {
+                let intento = prompt("ACCESO RESTRINGIDO\nPor favor, introduce la contraseña de autorización:");
+                if (intento === CLAVE_CORRECTA) {
+                    sessionStorage.setItem("acceso_collpani", "true");
+                } else {
+                    alert("Contraseña incorrecta. Acceso denegado.");
+                    window.location.href = "https://www.google.com"; 
+                    document.write("Acceso denegado.");
+                }
+            }
+        })();
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collpani - Gestión Personería Jurídica</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1><i class="fas fa-gavel"></i> Cooperativa Minera Collpani</h1>
+        <p>Gestión para Personería Jurídica</p>
+    </div>
+    
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="tab1"><i class="fas fa-users"></i> Socios</button>
+        <button class="tab-btn" data-tab="tab2"><i class="fas fa-folder-open"></i> Docs</button>
+        <button class="tab-btn" data-tab="tab3"><i class="fas fa-chart-line"></i> Avance</button>
+        <button class="tab-btn" data-tab="tab4"><i class="fas fa-check-double"></i> Checklist</button>
+        <button class="tab-btn" data-tab="tab5"><i class="fas fa-chart-simple"></i> Precios</button>
+        <button class="tab-btn" data-tab="tab6"><i class="fas fa-calendar-alt"></i> Reuniones</button>
+        <button class="tab-btn" data-tab="tab7"><i class="fas fa-user-shield"></i> Admin</button>
+    </div>
+
+    <div id="tab1" class="tab-pane active-pane"><div id="sociosContent"></div></div>
+    <div id="tab2" class="tab-pane"><div id="documentosContent"></div></div>
+    <div id="tab3" class="tab-pane"><div id="avanceContent"></div></div>
+    <div id="tab4" class="tab-pane"><div id="checklistContent"></div></div>
+    <div id="tab5" class="tab-pane"><div id="cotizacionesContent"></div></div>
+    <div id="tab6" class="tab-pane"><div id="reunionesContent"></div></div>
+    <div id="tab7" class="tab-pane"><div id="encargadosContent"></div></div>
+    
+    <footer>Datos guardados automáticamente</footer>
+</div>
+
+<script src="app.js"></script>
+<script src="modules/socios.js"></script>
+<script src="modules/documentos.js"></script>
+<script src="modules/avance.js"></script>
+<script src="modules/checklist.js"></script>
+<script src="modules/cotizaciones.js"></script>
+<script src="modules/reuniones.js"></script>
+<script src="modules/encargados.js"></script>
+</body>
+</html>
