@@ -34,7 +34,7 @@ const EncargadosModule = (function() {
                 <p>Ingrese la contraseña para acceder a las funciones de gestión</p>
                 <input type="password" id="encPwd" placeholder="Contraseña" style="width:100%; margin: 1rem 0; padding:0.5rem; border-radius:30px;">
                 <button id="loginEncBtn" style="background:#7c3aed; width:100%; padding:0.5rem; border-radius:30px; border:none; color:white; cursor:pointer;">Acceder al panel</button>
-                <p style="font-size: 0.7rem; margin-top: 0.8rem;">Primera vez: use <strong>"tramite2025"</strong> o cree una nueva</p>
+                <p style="font-size: 0.7rem; margin-top: 0.8rem;">Primera vez: use <strong>"tramite2026"</strong> o cree una nueva</p>
             </div>
         `,
         
